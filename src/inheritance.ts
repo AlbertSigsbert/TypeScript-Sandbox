@@ -1,5 +1,5 @@
 class Department {
-  private employees: string[] = [];
+ protected employees: string[] = [];
 
   constructor(private readonly id: string, public name: string) {}
 
@@ -24,7 +24,14 @@ class ITDepartment extends Department {
 
   printAdmins(){
     console.log(this.admins);
-    
+  }
+
+  //Method overriding
+  addEmployee(employee: string): void {
+    //Custom Code 
+    console.log('Add Employee');
+    //Inherited Code
+    this.employees.push(employee)
   }
 }
 
