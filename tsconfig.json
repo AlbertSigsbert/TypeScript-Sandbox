@@ -104,6 +104,7 @@
     "node_modules",
     "**/dummy.ts",
     "**/basics.ts",
-    "**/obj-enums-arr.ts"
+    "**/obj-enums-arr.ts",
+    "**/classes.ts"
   ]
 }
