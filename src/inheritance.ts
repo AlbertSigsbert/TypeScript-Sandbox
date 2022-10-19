@@ -1,7 +1,15 @@
 class Department {
   protected employees: string[] = [];
 
+  //Static Property
+  static year: number = 2022;
+
   constructor(private readonly id: string, public name: string) {}
+
+  //Static method
+  static createEmployee(name:string){
+    return {name}
+  }
 
   describe(this: Department) {
     console.log(`Department (${this.id}): ${this.name}`);
@@ -19,6 +27,7 @@ class Department {
 
 class ITDepartment extends Department {
   private team: string[];
+
 
   //Constructor
   constructor(id: string, private admins: string[]) {
@@ -62,6 +71,11 @@ class ITDepartment extends Department {
 const it = new ITDepartment("d2", ["Albert", "Max"]);
 
 it.describe();
+
+//Static Property & Methods
+console.log(Department.year);
+console.log(Department.createEmployee('Hans'));
+
 
 //Set team members
 it.teamMembers = 'John';
