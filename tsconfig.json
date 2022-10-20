@@ -105,6 +105,7 @@
     "**/dummy.ts",
     "**/basics.ts",
     "**/obj-enums-arr.ts",
-    "**/classes.ts"
+    "**/classes.ts",
+    "**/inheritance.ts"
   ]
 }
