@@ -108,5 +108,6 @@
     "**/classes.ts",
     "**/inheritance.ts",
     "**/interfaces.ts",
+    "**/intersection-types.ts",
   ]
 }
