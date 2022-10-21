@@ -1,18 +1,19 @@
-//UNION TYPES
-function combined(input1: string | number, input2: string | number, ) {
-    let result;
-    if (typeof input1 === 'number' && typeof input2 === 'number') {
-        result = input1 + input2
-    }
-    else{
-        result = input1.toString() + input2.toString()
-    }
-    return result
-}
+//Intersection Types (Combine 2 or more types)
 
-const combinedNames = combined('John', 'Doe');
-console.log(combinedNames);
+type Admin = {
+  name: string;
+  privileges: string[];
+};
 
+type Employee = {
+  name: string;
+  startDate: Date;
+};
 
-const combinedAges = combined(20, 24);
-console.log(combinedAges);
+type ElevatedEmployee = Admin & Employee;
+
+const e1: ElevatedEmployee = {
+  name: "Albert",
+  privileges: ["create-server"],
+  startDate: new Date(),
+};
