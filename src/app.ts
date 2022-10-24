@@ -35,3 +35,11 @@ const fetchedUserData = {
 }
 
 console.log(fetchedUserData?.job?.title);
+
+
+//NULLISH COALESCISCING OPERATOR
+const userInput = '';
+//Fallback will be added iff userInput is null/undefined & not any other falsy value
+const storedData = userInput ?? 'FALLBACK';
+
+console.log(storedData);
