@@ -25,3 +25,13 @@ function add(a: Combinable, b: Combinable) {
 
 const result = add('Albert', 'Sigsbert');
 console.log(result.split(''));
+
+
+//OPTIONAL CHAINING
+const fetchedUserData = {
+    id:'u1',
+    name:'James',
+    job:{ title:'CEO', description: 'Owner'}
+}
+
+console.log(fetchedUserData?.job?.title);
