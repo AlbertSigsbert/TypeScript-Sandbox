@@ -110,5 +110,7 @@
     "**/interfaces.ts",
     "**/intersection-types.ts",
     "**/type-guards.ts",
+    "**/discriminating-union.ts",
+    "**/type-casting.ts"
   ]
 }

@@ -1,32 +1,9 @@
-//DISCRIMINATING UNION
-interface Bird {
-  type: "bird";
-  flyingSpeed: number;
+//INDEX PROPERTIES
+interface ErrorContainer {
+  [key: string]: string;
 }
 
-interface Horse {
-  type: "horse";
-  runningSpeed: number;
-}
-
-type Animal = Bird | Horse;
-
-function useAnimal(animal: Animal) {
-  let speed;
-
-  switch (animal.type) {
-    case "bird":
-      speed = animal.flyingSpeed;
-      break;
-    case "horse":
-      speed = animal.runningSpeed;
-      break;
-    default:
-      break;
-  }
-
-  console.log("Animal Moving at Speed: " + speed);
-}
-
-useAnimal({type: 'bird', flyingSpeed:120})
-useAnimal({type: 'horse', runningSpeed:80})
+const errorBag: ErrorContainer = {
+  email: "Not a valid email",
+  username: "Username must start with a character",
+};
