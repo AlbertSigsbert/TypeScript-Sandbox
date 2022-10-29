@@ -102,15 +102,6 @@
   },
   "exclude": [
     "node_modules",
-    "**/dummy.ts",
-    "**/basics.ts",
-    "**/obj-enums-arr.ts",
-    "**/classes.ts",
-    "**/inheritance.ts",
-    "**/interfaces.ts",
-    "**/intersection-types.ts",
-    "**/type-guards.ts",
-    "**/discriminating-union.ts",
-    "**/type-casting.ts"
+    "./src/done"
   ]
 }
