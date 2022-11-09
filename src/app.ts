@@ -19,11 +19,42 @@
 
 
 //The keyof Constraint
-function test<T extends object, U extends keyof T>(obj:T, key:U){
-  return 'Value: '+ obj[key];
+// function test<T extends object, U extends keyof T>(obj:T, key:U){
+//   return 'Value: '+ obj[key];
+// }
+
+// const value = test({name:'John'}, 'name');
+// console.log(value);
+
+
+//Generic classes
+class DataStorage<T>{
+  private data: T[] = [];
+
+  addItem(item:T){
+    this.data.push(item);
+  }
+
+  removeItem(item:T){
+    this.data.splice(this.data.indexOf(item), 1);
+  }
+
+  getItems(){
+    return [...this.data];
+  }
 }
 
-const value = test({name:'John'}, 'name');
-console.log(value);
+//Working with strings
+const txtStorage = new DataStorage<string>();
+txtStorage.addItem('John');
+txtStorage.addItem('Kevin');
+txtStorage.removeItem('John');
+console.log(txtStorage.getItems());
 
+//Working with numbers
+const numStorage = new DataStorage<number>();
+numStorage.addItem(1);
+numStorage.addItem(2);
+numStorage.removeItem(2);
+console.log(numStorage.getItems());
 
