@@ -5,14 +5,27 @@
 // }
 
 //Decorator Factory
-function Logger(logString: string) {
-  return function (constructor: Function) {
-    console.log(logString);
-    console.log(constructor);
+// function Logger(logString: string) {
+//   return function (constructor: Function) {
+//     console.log(logString);
+//     console.log(constructor);
+//   }
+// }
+
+//Decorators as templates
+function withTemplate(template:string, elementId:string){
+  return function (constructor: any){
+    const el = document.getElementById(elementId);
+    const p = new constructor();
+    if(el){
+      el.innerHTML = template;
+      el.textContent = p.name;
+    }
   }
 }
 
-@Logger('LOGGING - PERSON')
+// @Logger('LOGGING - PERSON')
+@withTemplate('<h1>Decorator Template</h1>', 'app')
 class Person {
   name = "Albert";
 
