@@ -5,41 +5,59 @@
 // }
 
 //Decorator Factory
-function Logger(logString: string) {
-  console.log('LOGGER FACTORY');
+// function Logger(logString: string) {
+//   console.log('LOGGER FACTORY');
   
-  return function (constructor: Function) {
-    console.log('LOGGER DECORATOR');
-    console.log(logString);
-    console.log(constructor);
-  }
-}
+//   return function (constructor: Function) {
+//     console.log('LOGGER DECORATOR');
+//     console.log(logString);
+//     console.log(constructor);
+//   }
+// }
 
 //Decorators as templates
-function withTemplate(template:string, elementId:string){
-  console.log('TEMPLATE FACTORY');
+// function withTemplate(template:string, elementId:string){
+//   console.log('TEMPLATE FACTORY');
   
-  return function (constructor: any){
-    console.log('TEMPLATE DECORATOR');
+//   return function (constructor: any){
+//     console.log('TEMPLATE DECORATOR');
     
-    const el = document.getElementById(elementId);
-    const p = new constructor();
-    if(el){
-      el.innerHTML = template;
-      el.textContent = p.name;
-    }
-  }
+//     const el = document.getElementById(elementId);
+//     const p = new constructor();
+//     if(el){
+//       el.innerHTML = template;
+//       el.textContent = p.name;
+//     }
+//   }
+// }
+
+//Multiple Decorators
+// @Logger('LOGGING - PERSON')
+// @withTemplate('<h1>Decorator Template</h1>', 'app')
+// class Person {
+//   name = "Albert";
+
+//   constructor() {
+//     console.log("Creating a person object ...");
+//   }
+// }
+
+// const person = new Person();
+// console.log(person);
+
+
+//Property Decorators
+function Log(target:any, propertyName:string | Symbol){
+  console.log('PROERTY DECORATOR');
+  console.log(target, propertyName);
 }
 
-@Logger('LOGGING - PERSON')
-@withTemplate('<h1>Decorator Template</h1>', 'app')
-class Person {
-  name = "Albert";
+class Product{
 
-  constructor() {
-    console.log("Creating a person object ...");
+  @Log
+  title:string;
+
+  constructor(t:string){
+    this.title = t;
   }
 }
-
-const person = new Person();
-console.log(person);
