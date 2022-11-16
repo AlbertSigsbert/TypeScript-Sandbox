@@ -5,16 +5,23 @@
 // }
 
 //Decorator Factory
-// function Logger(logString: string) {
-//   return function (constructor: Function) {
-//     console.log(logString);
-//     console.log(constructor);
-//   }
-// }
+function Logger(logString: string) {
+  console.log('LOGGER FACTORY');
+  
+  return function (constructor: Function) {
+    console.log('LOGGER DECORATOR');
+    console.log(logString);
+    console.log(constructor);
+  }
+}
 
 //Decorators as templates
 function withTemplate(template:string, elementId:string){
+  console.log('TEMPLATE FACTORY');
+  
   return function (constructor: any){
+    console.log('TEMPLATE DECORATOR');
+    
     const el = document.getElementById(elementId);
     const p = new constructor();
     if(el){
@@ -24,7 +31,7 @@ function withTemplate(template:string, elementId:string){
   }
 }
 
-// @Logger('LOGGING - PERSON')
+@Logger('LOGGING - PERSON')
 @withTemplate('<h1>Decorator Template</h1>', 'app')
 class Person {
   name = "Albert";
