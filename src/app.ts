@@ -45,59 +45,88 @@
 // const person = new Person();
 // console.log(person);
 
-//Property Decorators
-function Log(target: any, propertyName: string | Symbol) {
-  console.log("PROPERTY DECORATOR");
-  console.log(target, propertyName);
+// //Property Decorators
+// function Log(target: any, propertyName: string | Symbol) {
+//   console.log("PROPERTY DECORATOR");
+//   console.log(target, propertyName);
+// }
+
+// //Accessor decorator
+// function Log2(target: any, name: string, descriptor: PropertyDescriptor) {
+//   console.log("ACCESSOR DECORATOR");
+//   console.log(target);
+//   console.log(name);
+//   console.log(descriptor);
+// }
+
+// //Method decorator
+// function Log3(target: any, name: string, descriptor: PropertyDescriptor) {
+//   console.log("METHOD DECORATOR");
+//   console.log(target);
+//   console.log(name);
+//   console.log(descriptor);
+// }
+
+// //Parameter decorator
+// function Log4(target: any, name: string | Symbol, position:number) {
+//   console.log("PARAM DECORATOR");
+//   console.log(target);
+//   console.log(name);
+//   console.log(position);
+// }
+
+// class Product {
+//   @Log
+//   title: string;
+//   private _price: number;
+
+//   constructor(t: string, p: number) {
+//     this.title = t;
+//     this._price = p;
+//   }
+
+//   //A setter
+//   @Log2
+//   set price(val: number) {
+//     if (val > 0) {
+//       this._price = val;
+//     } else {
+//       throw new Error("Price must be positive");
+//     }
+//   }
+
+//   //A method
+//   @Log3
+//   getPriceWithTax(@Log4 tax: number) {
+//     return this._price * (1 + tax);
+//   }
+// }
+
+//Creating an autobind descriptor
+function Autobind(_:any, _2:string, descriptor:PropertyDescriptor): PropertyDescriptor{
+   const oldMethod = descriptor.value;
+
+   return {
+      get(){
+        const boundFn = oldMethod.bind(this);
+        return boundFn
+      }
+   }
 }
 
-//Accessor decorator
-function Log2(target: any, name: string, descriptor: PropertyDescriptor) {
-  console.log("ACCESSOR DECORATOR");
-  console.log(target);
-  console.log(name);
-  console.log(descriptor);
-}
 
-//Method decorator
-function Log3(target: any, name: string, descriptor: PropertyDescriptor) {
-  console.log("METHOD DECORATOR");
-  console.log(target);
-  console.log(name);
-  console.log(descriptor);
-}
+class Printer {
+  message = "Hello World learning TS here";
 
-//Parameter decorator
-function Log4(target: any, name: string | Symbol, position:number) {
-  console.log("PARAM DECORATOR");
-  console.log(target);
-  console.log(name);
-  console.log(position);
-}
-
-class Product {
-  @Log
-  title: string;
-  private _price: number;
-
-  constructor(t: string, p: number) {
-    this.title = t;
-    this._price = p;
+  @Autobind
+  showMessage() {
+    console.log(this.message);
   }
-
-  //A setter
-  @Log2
-  set price(val: number) {
-    if (val > 0) {
-      this._price = val;
-    } else {
-      throw new Error("Price must be positive");
-    }
-  }
-
-  //A method
-  @Log3
-  getPriceWithTax(@Log4 tax: number) {
-    return this._price * (1 + tax);
-  }
 }
+
+const p = new Printer();
+
+
+const btn = document.querySelector('button')!;
+btn.addEventListener('click', p.showMessage);
+
